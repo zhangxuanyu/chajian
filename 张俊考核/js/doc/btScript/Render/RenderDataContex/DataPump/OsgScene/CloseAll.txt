@@ -1,0 +1,10 @@
+Render\RenderDataContex\DataPump\OsgScene\CloseAll;
+
+作用：
+关闭所有的场景和属性库
+
+参数：
+无
+
+返回值：
+无

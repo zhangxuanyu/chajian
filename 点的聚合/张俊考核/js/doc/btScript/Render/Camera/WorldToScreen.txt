@@ -1,0 +1,16 @@
+Render\Camera\WorldToScreen [Wx] [Wy] [Wz];
+
+作用：
+计算世界坐标系中的点在屏幕坐标系中的位置
+
+参数：
+[Wx] - double，点在世界坐标系中的X坐标
+[Wy] - double，点在世界坐标系中的Y坐标
+[Wz] - double，点在世界坐标系中的Z坐标
+
+返回值：
+Log0 : [Sx] [Sy] [Sz]
+[Sx] - int，点在屏幕坐标系中的X坐标（以像素为单位）
+[Sy] - int，点在屏幕坐标系中的Y坐标（以像素为单位）
+[Sz] - float，点在屏幕坐标系中的深度
+

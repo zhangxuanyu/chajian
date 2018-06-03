@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <div id="content">
+      
+    </div>
+    </body>
+    <script>
+        var arr = {
+          "name":"wuwuw",
+           "weacher":"cloud",
+           "city":"wuhan",
+           "job":"leader"
+        };
+        var aa = "?";
+        for(var key in arr){
+            console.log(aa);
+            aa = aa+key+"="+arr[key]+"&";
+        }
+        aa = aa.substr(0, aa.length - 1);
+        console.log(aa);//aa即是字符串拼接结果
+    </script>
+</html>

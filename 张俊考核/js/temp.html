@@ -1,0 +1,192 @@
+﻿<!doctype html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <title>WebGL example</title>
+    <style type="text/css">
+
+#bt_container {
+    position: absolute;
+    overflow: hidden;
+//    width: 500px;
+//    height: 500px;
+    left: 0px;
+    top: 0px;
+}
+
+#canvasgl{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.bt_ui_element {
+    position: absolute;
+  z-index: 10;
+  color: white;
+}
+
+    </style>
+</head>
+
+<body>
+<div id="bt_container">
+  <canvas id="canvasgl"tabindex="0"></canvas>
+</div>
+  <pre id="console"></pre>
+    <script type="text/javascript" src="jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="touch.min.js"></script>
+  <script type="text/javascript" src="bt_a.js"></script>
+  <script type="text/javascript" src="bt_util.js"></script>
+  <script type="text/javascript" src="bt_plug_annotation.js"></script>
+  <script type="text/javascript" src="bt_plug_compass.js"></script>
+  <script type="text/javascript" src="bt_plug.js"></script>
+  <!--
+    <textarea id="script" style="width:390px;height:100px;"></textarea>
+    <br />
+    <button onclick="RunScript()">execute</button>
+    <div id="result" class="result"></div>
+  -->
+  <script>
+    var bt_UIE_divSetNdx = 0;
+    var bt_UIE_divSets = [];
+    var bt_UIE_divContainerElement = document.getElementById("bt_container");
+    function JS_BT_UIElementClearAll()
+    {
+      for (; bt_UIE_divSetNdx < bt_UIE_divSets.length; ++bt_UIE_divSetNdx) {
+        bt_UIE_divSets[bt_UIE_divSetNdx].style.display = "none";
+      }
+      bt_UIE_divSetNdx = 0;
+    }
+    function JS_BT_UIElementAddText(msg, x, y)
+    {
+      // get the next div
+      var divSet = bt_UIE_divSets[bt_UIE_divSetNdx++];
+      // If it doesn't exist make a new one
+      if (!divSet)
+      {
+        divSet = {};
+        divSet.div = document.createElement("div");
+                divSet.div.addEventListener("mousemove", function(event){
+          var bbox = divSet.div.getBoundingClientRect();
+          event.clientX += bbox.left;
+          event.clientY += bbox.top;
+          bt_canvase_onMouseMove(event);
+        }, false);
+                divSet.div.addEventListener("mousedown", function(event){
+          var bbox = divSet.div.getBoundingClientRect();
+          event.clientX += bbox.left;
+          event.clientY += bbox.top;
+          bt_canvase_onMouseDown(event);
+        }, false);
+                divSet.div.addEventListener("mouseup", function(event){
+          var bbox = divSet.div.getBoundingClientRect();
+          event.clientX += bbox.left;
+          event.clientY += bbox.top;
+          bt_canvase_onMouseUp(event);
+        }, false);
+
+
+        divSet.style = divSet.div.style;
+        divSet.div.className = "bt_ui_element";
+
+        // add the text node to the div
+        divSet.textNode = document.createElement('div');
+        divSet.div.appendChild(divSet.textNode);
+
+        // add the div to the container
+        bt_UIE_divContainerElement.appendChild(divSet.div);
+
+        // Add it to the set
+        bt_UIE_divSets.push(divSet);
+      }
+
+      // make it display
+      divSet.style.display = "block";
+      divSet.style.left = Math.floor(x - 8) + "px";
+      divSet.style.top = Math.floor(y - 16) + "px";
+
+      divSet.textNode.innerHTML = "<div style='background:url(image/DefaultIcon.png); background-position:center left; background-repeat: no-repeat; height:16px;line-height:10px;'><span style='margin-left:16px; font-size:9px; white-space: nowrap;'>" + Module.Pointer_stringify(msg) + "</span></div>";
+    }
+
+    function BT_RenderFrame() {
+      document.getElementById("bt_container").style.width = $(window).width() + "px";
+      document.getElementById("bt_container").style.height = $(window).height() + "px";
+      if (document.getElementById("canvasgl").width != document.getElementById("bt_container").clientWidth)
+      {
+        document.getElementById("canvasgl").width = document.getElementById("bt_container").clientWidth;
+        //$('canvas').attr('width', document.getElementById("bt_container").clientWidth);
+      }
+      if (document.getElementById("canvasgl").height != document.getElementById("bt_container").clientHeight)
+      {
+        document.getElementById("canvasgl").height = document.getElementById("bt_container").clientHeight;
+        //$('canvas').attr('height', document.getElementById("bt_container").clientHeight);
+      }
+      
+      var script = "Render\\OnRender " + canvasgl.width + " " + canvasgl.height + ";";
+      BT_BodyExecuteScript( g_Body, script, 0 );
+      requestId = window.requestAnimationFrame( BT_RenderFrame );
+    }
+    BT_RenderFrame();
+
+        function RunScript() {
+            var script = document.getElementById('script').value;
+            document.getElementById('result').innerHTML = script;
+            var bt_log = BT_LogCreate();
+            BT_BodyExecuteScript(g_Body, script, bt_log);
+            var result='';
+            var log_count = BT_LogGetCount(bt_log);
+            if (log_count > 0) {
+                var log_str = Module.Pointer_stringify(BT_LogGetLog(0, bt_log));
+                console.log(log_str);
+                result+=log_str;
+            }
+            document.getElementById('result').innerHTML = script + "\r\n" + result;
+      BT_LogRelease(bt_log);
+        }
+
+    $(function () {
+BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\DataPump\\OsgScene\\OpenOsgScene http://" + window.location.hostname + ":40001/Bentusi wh;", 0);
+BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\DataPump\\BaseScene\\OpenBaseScene http://" + window.location.hostname + ":40001/Bentusi wh_bldg;", 0);
+BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\ModelScene\\OpenModelScene http://" + window.location.hostname + ":40001/Bentusi TestModelScene;", 0);
+
+BT_BodyExecuteScript(g_Body, "Render\\Camera\\SetParam 70 -70 150 70 30 55 0 0 1;", 0);
+
+//BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\ModelScene\\ModelScene\\TestModelScene\\SetInstance i1 0 s2 0 10 10 10 0 0 1 1 100 0 100;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\ActivePlugin PosQuery;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\ActivePlugin DistMeasure;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\ActivePlugin PosQuery;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\ActivePlugin ModelInstanceQuery;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\ActivePlugin ModelInstancePlace;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\DeactiveAll;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\Plugin\\ModelInstancePlace\\SetSceneName TestModelScene;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\Plugin\\ModelInstancePlace\\SetSymbolName s1;", 0);
+BT_BodyExecuteScript(g_Body, "Plugin\\ActivePlugin OsgFeatureAbstract;", 0);
+
+
+BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\SetOsgClipBox 20.8 49.16 56.26 27.37 57.33 56.26 12.42 69.16 56.26 5.94 60.59 56.26 20.8 49.16 156 27.37 57.33 156 12.42 69.16 156 5.94 60.59 156;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\SetOsgClipBox 0 0 -10000 1 0 -10000 1 1 -10000 0 1 -10000 0 0 -9999 1 0 -9999 1 1 -9999 0 1 -9999;", 0);
+
+
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 26.78 -7.67 48.5 消防水池;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 16.72 59.26 56.87 雷管库;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 134.89 29.41 57.62 炸药库1;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 148.26 75.78 58.25 炸药库2;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 99.94 90.34 58.04 闲置库房1;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 71.36 49.45 57.47 闲置库房2;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 105.83 -9.69 56.89 闲置库房3;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 130.1 14.79 61.8 电子监控1;", 0);
+//BT_BodyExecuteScript(g_Body, "Render\\AddAnnotation 0.3 72.016 59.83 电子监控2;", 0);
+
+      //BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\DataPump\\BaseScene\\OpenBaseScene ws://"+window.location.hostname+":40001/Bentusi wh_bldg;", 0);
+      //BT_BodyExecuteScript(g_Body, "Render\\RenderDataContex\\DataPump\\RasterLayer\\OpenScheme ws://"+window.location.hostname+":40001/Bentusi jz;", 0);
+      //BT_BodyExecuteScript(g_Body, "Render\\Camera\\JumpTo 8778 9627 0;", 0);
+    });
+
+    </script>
+</body>
+
+</html>
+

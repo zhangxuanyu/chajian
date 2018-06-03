@@ -1,0 +1,13 @@
+Render\SetAA [AA_Factor];
+
+作用：
+设置反走样级别
+
+参数：
+[AA_Factor] - float，常用值为1或2。1表示关闭反走样，2表示开启2x反走样
+
+返回值：
+无
+
+例子：
+Render\SetAA 2;

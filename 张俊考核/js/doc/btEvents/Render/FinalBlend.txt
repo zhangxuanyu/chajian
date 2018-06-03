@@ -1,0 +1,7 @@
+Render\FinalBlend
+
+发送时机：
+每次渲染结束后、Present前
+
+参数：
+无

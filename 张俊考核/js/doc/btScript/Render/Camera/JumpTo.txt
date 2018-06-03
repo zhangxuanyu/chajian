@@ -1,0 +1,15 @@
+Render\Camera\JumpTo [Lx] [Ly] [Lz];
+
+作用：
+视点直接跳转至制定坐标，视线方向保持不变
+
+参数：
+[Lx] - double，新视点的X坐标
+[Ly] - double，新视点的Y坐标
+[Lz] - double，新视点的Z坐标
+
+返回值：
+无
+
+例子：
+Render\Camera\JumpTo 100.0 100.0 0;

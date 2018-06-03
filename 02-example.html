@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="dv"></div>
+	<script type="text/template" id="tpl">
+		<table border="1" width="600">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>性别</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for ( var i = 0; i < list.length; i++ ) { %>
+				<tr>
+					<td><%= i + 1 %></td>
+					<td><%= list[ i ].name %></td>
+					<td><%= list[ i ].age %></td>
+					<td><%= list[ i ].gender %></td>
+				</tr>
+				<% } %>
+			</tbody>
+
+		</table>
+
+	</script>
+</body>
+<script src="../src/template-web.js"></script>
+<script>
+	var data =  [
+			{ name: 'jim1', age: 19, gender: '男' },
+			{ name: 'jim2', age: 9, gender: '女' },
+			{ name: 'jim3', age: 29, gender: '男' },
+			{ name: 'jim4', age: 39, gender: '女' },
+			{ name: 'jim5', age: 49, gender: '男' },
+			{ name: 'jim6', age: 59, gender: '女' }
+		]
+
+
+
+	var obj = {
+		list:data
+	};
+
+	var html = template( 'tpl', obj );
+
+	var dv = document.getElementById( 'dv' );
+
+	dv.innerHTML = html;
+
+</script>
+</html>

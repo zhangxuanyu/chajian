@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <h1>Web storage 来做简易数据库事例</h1>
+    <table>
+      <tr><td>姓名：</td><td> <input type="text" id="name"></td></tr>
+      <tr><td>EMAIL：</td><td> <input type="text" id="email"></td></tr>
+      <tr><td>电话：</td><td> <input type="text" id="tel"></td></tr>
+      <tr><td>备注：</td><td> <input type="text" id="memo"></td></tr>
+      <tr>
+      <td></td><td> <input type="button" value="保存" onclick="savestorage();"></td>
+      </tr>
+    </table>
+    <hr>
+    <p>检索：<input type="text" id="find">
+        <input type="button" value="检索" onclick="findstorage('msg');">
+    </p>
+    <p id="msg"></p>
+    </body>
+    <script>
+        function savestorage(){
+          var data = new Object;
+          data.name = document.getElementById('name').value;
+          data.email = document.getElementById('email').value;
+          data.tel = document.getElementById('tel').value;
+          data.memo = document.getElementById('memo').value;
+          var str = JSON.stringify(data);
+          Cookie.setItem(data.name,str);
+          alert("数据已保存");
+        }
+        function findstorage(id){
+          var find = document.getElementById('find').value;
+          var str = Cookie.getItem(find);
+          var data = JSON.parse(str);
+          var result = "姓名："+data.name+'<br>';
+          result +="EMAIL:"+data.email +'<br>';
+          result +="电话:"+data.tel +'<br>';
+          result +="备注:"+data.memo +'<br>';
+          var target = document.getElementById(id);
+          target.innerHTML = result;
+        }
+    </script>
+</html>

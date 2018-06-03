@@ -1,0 +1,10 @@
+Render\RenderDataContex\DataPump\OsgScene\CloseOsgScene [scene_name];
+
+作用：
+关闭制定的OSG场景
+
+参数：
+[scene_name] - string，欲关闭的场景的名字
+
+返回值：
+无

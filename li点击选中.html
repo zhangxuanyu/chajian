@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+<select name="2w" id="oi">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select>
+</body>
+<script src="jquery-1.11.0.min.js"></script>
+<script>
+
+    //用li进行点击判断的时候可以用$(this).index() = 用ul进行点击判断的时候可以用$(e.target).index()
+    //即li的$(this) = ul的$(e.target)
+    $("li").click(function(e){
+        console.log($(this));
+        console.log("li的$(this).index:"+$(this).index());
+        console.log(e.target);
+    })
+    //用ul进行点击判断的时候可以用$(e.target).index
+    $("ul").click(function(e){
+        console.log($(this));
+        console.log("ul的$(this).index():"+$(this).index());
+        console.log("ul的$(e.target).index():"+ $(e.target).index());
+        console.log(e.target);
+    })
+
+    //关于select可以用value判断
+</script>
+</html>

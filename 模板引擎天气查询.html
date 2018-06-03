@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <script src="jquery-3.2.1.js"></script>
+        <script src="template-web.js"></script>
+    </head>
+    <style>
+      button{
+        width: 80px;
+        height: 31px;
+        background-color: orange;
+        border-radius: 5px;
+        border:0;
+        outline: none;
+      }
+      input{
+        height: 23px;
+        border:1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+      }
+    </style>
+    <body>
+    <input type="text" placeholder="城市" id="city">
+    <button id="btn">提交</button>
+     <div id="box"></div>
+     <!-- 模板 -->
+    <script type="text/template" id="content">
+        <table border="1" width="600">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>温度</th>
+          <th>天气</th>
+          <th>风级</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ each list  }} 
+        <tr>
+          <td>{{ $value.date }}</td>
+          <td>{{ $value.temperature }}</td>
+          <td>{{ $value.weather }}</td>
+          <td>{{ $value.wind }}</td>
+        </tr>
+        {{ /each }} 
+      </tbody>
+
+    </table>
+    </script>
+    </body>
+
+    <script>
+        $("#btn").click(function(){
+          var b = $("#city").val();
+          console.log(b);
+          $.ajax({
+            url: 'http://v.juhe.cn/weather/index',
+            type: 'GET',
+            dataType: 'jsonp',
+            // crossDomain: true,
+            data:{cityname:b,dtype:'json',format:'2',key:'88f6a50714c3a36acf1aa2cf7ae3f932'},
+            success:function(data){
+              var html = template('content',{list:data.result.future});
+              $("#box").html(html);
+            }
+          })         
+        })
+    </script>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="{CHARSET}">
+		<title></title>
+	</head>
+	<body>
+		<div onclick="test(event)">
+			11111111
+			<input type="hidden" name="" id="" value="[12,13,15]"/>
+		</div>
+		
+	</body>
+	<script>
+			function foo({x, y = 5} = {}) {
+  			console.log(x, y);
+		}
+
+		foo({1,2}) // undefined 5
+		
+	</script>
+</html>

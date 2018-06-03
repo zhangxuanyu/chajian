@@ -1,0 +1,7 @@
+Render\BeforeRender
+
+发送时机：
+每次渲染开始前
+
+参数：
+无

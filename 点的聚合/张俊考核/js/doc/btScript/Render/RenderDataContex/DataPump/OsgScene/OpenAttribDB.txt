@@ -1,0 +1,11 @@
+Render\RenderDataContex\DataPump\OsgScene\OpenAttribDB [src_name] [db_name];
+
+作用：
+打开属性库
+
+参数：
+[src_name] - string，数据源名称（对于本地数据源，形如“file://E:\TestData”；对于Web远程数据源，形如“http://127.0.0.1:40001/Bentusi”）
+[db_name] - string，属性库名称
+
+返回值：
+无

@@ -1,0 +1,110 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    </body>
+    <script>
+    var arr1 = [ 
+                {
+                num:100,
+                beginx:0,
+                endx:100,
+                beginy:0,
+                endy:100
+                          },
+               {
+                num:200,
+                beginx:0,
+                endx:-100,
+                beginy:0,
+                endy:100
+                          },
+               {
+                num:300,
+                beginx:0,
+                endx:-100,
+                beginy:0,
+                endy:-100
+                          },
+               {
+                num:400,
+                beginx:0,
+                endx:100,
+                beginy:0,
+                endy:-100
+                          } 
+                          ]
+               
+    // var countt = [100,200,300,400];
+    var upcountt = 260;
+
+    //处理f()中传入参数值
+     function zhi(upcoun){
+          upcoun= 0.7*upcoun;
+          return upcoun;
+     }
+     function arr(coun,i){
+      //第一象限
+      // if(coun[i].endx>0&&coun[i].endy){
+      //   var xn = (coun[i].endx+coun[i].beginx)/2;
+      //   var coun = 
+      // }
+      return  coun = [
+                       {
+                          num: coun[i].num*0.5,
+                          beginx:0,
+                          endx:100,
+                          beginy:0,
+                          endy:-100
+                                                    } ,
+                      {
+                          num: coun[i].num*0.5,
+                          beginx:0,
+                          endx:100,
+                          beginy:0,
+                          endy:-100
+                                                     } ,
+                      {
+                          num: coun[i].num*0.5,
+                          beginx:0,
+                          endx:100,
+                          beginy:0,
+                          endy:-100
+                                                      } ,
+                     {
+                          num: coun[i].num*0.5,
+                          beginx:0,
+                          endx:100,
+                          beginy:0,
+                          endy:-100
+                                                      } 
+                      ];
+     }
+
+
+      function f(upcount,count){ 
+        if(upcount>count[0].num&&upcount>count[1].num&&upcount>count[2].num&&upcount>count[3].num){ 
+            return [ count[0],count[1],count[2],count[3] ];
+        }else{ 
+          //上一层和下一层的关系怎么表示
+          //不影响if判断条件，但是传值要进行修改
+          for(var i = 0;i<count.length;i++){
+            if(upcount<count[i].num){
+              count[i].num = f(zhi(upcount),arr(count,i))
+            }
+          }
+          
+           return count; 
+        } 
+      }  
+     
+       //可以考虑用数组的方法，把分裂的数放进数组，然后根据前面的数值判断是什么区域，第几层，来定区域范围现在就是有个问题，怎么遍历，遍历之后的渲染，因为有endx，endy所以还能直接调用函数放进去，出现的渲染里面的z，可以在渲染之前把中心点的z找出来。
+       //
+       var bb = f(upcountt,arr1);
+
+        console.log(bb);
+       
+       
+    </script>
+</html>

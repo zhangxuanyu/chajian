@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    </body>
+    <script>
+    var arr1 = [ 
+                [{
+                num:100,
+                beginx:0,
+                endx:100,
+                beginy:0,
+                endy:100
+                          }],
+               [{
+                num:200,
+                beginx:0,
+                endx:-100,
+                beginy:0,
+                endy:100
+                          }],
+               [{
+                num:300,
+                beginx:0,
+                endx:-100,
+                beginy:0,
+                endy:-100
+                          }],
+               [{
+                num:400,
+                beginx:0,
+                endx:100,
+                beginy:0,
+                endy:-100
+                          }] 
+                          ]
+              
+    var upcountt = 260;
+
+    //处理f()中传入参数值
+     function zhi(upcoun){
+          upcoun= 0.7*upcoun;
+          return upcoun;
+     }
+     function arrfn(coun,i){
+          
+        // if(coun[i][0].endx>=0&&coun[i][0].endy>=0){
+        //   //第一象限
+        //   return  coun = [
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                               }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:coun[i][0].beginx,
+        //                     endx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                                }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].beginy,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 ),
+        //                     beginx:coun[i][0].beginx,
+        //                     endx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     beginy:coun[i][0].beginy,
+        //                     endy:(coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                                 }] 
+        //                                                     ];
+        // }else if(coun[i][0].endx<0&&coun[i][0].endy>0){
+        //   //第二象限
+        //   return  coun = [
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].beginx,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                               }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                                }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          coun[i][0].beginy,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:coun[i][0].beginy,
+        //                     endy:(coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].beginy,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 ),
+        //                     beginx:coun[i][0].beginx,
+        //                     endx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     beginy:coun[i][0].beginy,
+        //                     endy:(coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 }] 
+        //                                                     ];
+        // }else if(coun[i][0].endx<0&&coun[i][0].endy<0){
+        //   //第三象限
+        //   return  coun = [
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].beginy,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2
+        //                                                 ),
+        //                     beginx:coun[i][0].beginx,
+        //                     endx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     beginy:coun[i][0].beginy,
+        //                     endy:(coun[i][0].endx+coun[i][0].beginx)/2
+        //                                               }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          coun[i][0].beginy,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:coun[i][0].beginy,
+        //                     endy:(coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                                 }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:coun[i][0].beginx,
+        //                     endx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                                 }] 
+        //                                                     ];
+        // }else if(coun[i][0].endx>0&&coun[i][0].endy<0){
+        //   //第四象限
+        //   return  coun = [
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          coun[i][0].beginy,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:coun[i][0].beginy,
+        //                     endy:(coun[i][0].endx+coun[i][0].beginx)/2
+        //                                               }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].beginy,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                 ),
+        //                     beginx:coun[i][0].beginx,
+        //                     endx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     beginy:coun[i][0].beginy,
+        //                     endy:(coun[i][0].endy+coun[i][0].beginy)/2
+        //                                                }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          coun[i][0].beginx,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:coun[i][0].beginx,
+        //                     endx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                                 }] ,
+        //                   [{
+        //                     num: count_point.countpoint(
+        //                          arr,
+        //                          (coun[i][0].endx+coun[i][0].beginx)/2,
+        //                          coun[i][0].endx,
+        //                          (coun[i][0].endy+coun[i][0].beginy)/2,
+        //                          coun[i][0].endy
+        //                                                 ),
+        //                     beginx:(coun[i][0].endx+coun[i][0].beginx)/2,
+        //                     endx:coun[i][0].endx,
+        //                     beginy:(coun[i][0].endy+coun[i][0].beginy)/2,
+        //                     endy:coun[i][0].endy
+        //                                                 }] 
+        //                                                     ];
+        // }
+      
+     }
+
+
+      function f(upcount,count){ 
+        if(upcount>count[0][0].num&&upcount>count[1][0].num&&upcount>count[2][0].num&&upcount>count[3][0].num){ 
+            return [ count[0] ,count[1],count[2],count[3] ];
+        }else{ 
+          //上一层和下一层的关系怎么表示
+          //不影响if判断条件，但是传值要进行修改
+          for(var i = 0;i<count.length;i++){
+            if(upcount<count[i][0].num){
+              count.splice(i,1,f(zhi(upcount),arrfn(count,i)))
+            }
+          }
+          
+           return count; 
+        } 
+      }  
+     
+       //可以考虑用数组的方法，把分裂的数放进数组，然后根据前面的数值判断是什么区域，第几层，来定区域范围
+
+      console.log(f(upcountt,arr1));
+
+      arr1 = [ 
+                {
+                num:[{
+                  num:200,
+                  beginx:0,
+                  endx:-100,
+                  beginy:0,
+                  endy:100
+              },{
+                num:[{
+                  num:200,
+                  beginx:0,
+                  endx:-100,
+                  beginy:0,
+                  endy:100
+                }],
+                beginx:0,
+                endx:-100,
+                beginy:0,
+                endy:100
+                }
+                ],
+                beginx:0,
+                endx:100,
+                beginy:0,
+                endy:100
+                          },
+               {
+                num:200,
+                beginx:0,
+                endx:-100,
+                beginy:0,
+                endy:100
+                          },
+               {
+                num:300,
+                beginx:0,
+                endx:-100,
+                beginy:0,
+                endy:-100
+                          },
+               {
+                num:400,
+                beginx:0,
+                endx:100,
+                beginy:0,
+                endy:-100
+                          }
+                          ]
+               
+
+
+    </script>
+</html>

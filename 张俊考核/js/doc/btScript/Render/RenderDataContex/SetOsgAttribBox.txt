@@ -1,0 +1,14 @@
+Render\RenderDataContex\SetOsgAttribBox [n] [B1P1X] [B1P1Y] [B1P1Z] ... [B1P8X] [B1P8Y] [B1P8Z] ...[BnP1X] [BnP1Y] [BnP1Z]... [BnP8X] [BnP8Y] [BnP8Z];
+
+作用：
+设置Osg单体化属性高亮区域。
+
+参数：
+[n] - int，属性盒总数，目前只支持一个属性盒
+[BmPnX] - double，第m个属性盒的第n个顶点的X坐标
+[BmPnY] - double，第m个属性盒的第n个顶点的Y坐标
+[BmPnZ] - double，第m个属性盒的第n个顶点的Z坐标
+#每个属性盒通过8个顶点定义，先底面点，后顶面点，逆时针，1号点与5号点对齐，2号点与6号点对齐，以此类推
+
+返回值：
+无

@@ -1,0 +1,16 @@
+Render\CameraControl\QueryPointPosInScreen [sx] [sy];
+
+作用：
+查询窗口坐标系中的点在世界坐标系中的位置
+
+参数：
+[sx] - int，窗口坐标系X
+[sy] - int，窗口坐标系Y
+
+返回值：
+Log0 : [hit] [wx] [wy] [wz]
+[hit] = int，击中标志，若指定点击中了场景中的某个面则为1，否则为0
+[wx] - double，点在世界坐标系中的X坐标
+[wy] - double，点在世界坐标系中的Y坐标
+[wz] - double，点在世界坐标系中的Z坐标
+Log1~LogN : 被击中的面的可选信息

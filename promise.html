@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+<body>
+<script src="js/jquery.js"></script>
+<script>
+    ajax1().then(
+        function(){
+            ajax2();
+        }
+    ).catch(function (){
+        console.log('有毛病了');
+    })
+    var len = 0;
+    function ajax1(){
+        var pro = new Promise(function(res,red){
+            $.get('http://182.254.146.100:3000/api/getindexmenu',function(data){
+                len = 1;
+                //表示执行then里面的function
+               if(true){
+                    res();
+                }else{
+                    red();
+                }
+            })
+        })
+        return pro;
+    }
+
+    function ajax2(){
+        $.get('http://127.0.0.1:3000/api/getindexmenu',function(data){
+            console.log(len);
+        })
+    }
+</script>
+</body>
+</html>

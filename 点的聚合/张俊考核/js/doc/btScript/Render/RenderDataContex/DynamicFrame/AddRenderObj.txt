@@ -1,0 +1,32 @@
+Render\RenderDataContex\DynamicFrame\AddRenderObj [id] [pri_type] [vertex_type] [org_x] [org_y] [org_z] [slot_id] [vertex_count] [index_count] [vertex_list] [index_list] [zbuf_enable];
+
+作用：
+添加渲染对象
+
+参数：
+[id] - string，对象的uid，保证唯一性
+[pri_type] - int，对象类型，取值：4=索引线
+[vertex_type] - int，顶点类型，取值：1=P1C1
+[org_x] - double，对象的模型坐标系原点在世界坐标系中的x坐标
+[org_y] - double，对象的模型坐标系原点在世界坐标系中的y坐标
+[org_z] - double，对象的模型坐标系原点在世界坐标系中的z坐标
+[slot_id] - int，渲染插口类型，取值：8=带Alpha插口
+[vertex_count] - int，顶点个数，[vertex_list]中所含定点数量必须与此相符
+[index_count] - int，索引个数，[index_list]中所含索引数量必须与此相符
+[vertex_list] - 顶点列表，不同类型的顶点格式不同：
+				P1C1：[vx] [vy] [vz] [vr] [vg] [vb] [va]
+[index_list] - 索引列表，每个索引值均为int型
+[zbuf_enable] - int，为0表示该对象绘制时不开启深度检测，否则开启
+[vx] - float，顶点的x坐标
+[vy] - float，顶点的y坐标
+[vz] - float，顶点的z坐标
+[vr] - int，顶点的颜色r分量，[0, 255]
+[vg] - int，顶点的颜色g分量，[0, 255]
+[vb] - int，顶点的颜色b分量，[0, 255]
+[va] - int，顶点的颜色a分量，[0, 255]
+
+返回值：
+无
+
+例：
+Render\RenderDataContex\DynamicFrame\AddRenderObj 006B852C-EBE8-4431-89BD-8B6F30D68134 4 1 119.196301 -92.050976 80.466442 8 2 2 0.000000 0.000000 0.000000 255 255 0 255 -274.336473 -81.487219 -31.113319 255 255 0 255 0 1 0;

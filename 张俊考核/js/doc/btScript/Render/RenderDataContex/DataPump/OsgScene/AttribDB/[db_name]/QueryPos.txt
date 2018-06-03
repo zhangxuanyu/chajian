@@ -1,0 +1,35 @@
+Render\RenderDataContex\DataPump\OsgScene\AttribDB\[db_name]\QueryPos [x] [y] [z];
+
+作用：
+查询指定点是否击中属性记录
+
+参数：
+[db_name] - string，属性库名字
+[x] - double，点在世界坐标系中的X坐标
+[y] - double，点在世界坐标系中的Y坐标
+[z] - double，点在世界坐标系中的Z坐标
+
+返回值：
+#本脚本执行后立即返回，但查询结果有可能延迟写入log中（异步写入）
+Log0 : [hit]
+[hit] - string，击中标签，若击中为“OnQueryPos true”，否则为“OnQueryPos false”
+
+Log1 : [x] [y] [z]
+[x] - double，点在世界坐标系中的X坐标
+[y] - double，点在世界坐标系中的Y坐标
+[z] - double，点在世界坐标系中的Z坐标
+#Log1为查询时输入的点
+
+Log2 : [key]
+[key] - string，击中的属性主键
+#当击中时，Log2为击中的属性主键，若未击中，则Log2以及后续的属性盒（Log3~）均不存在
+
+Log3 : [B1P1X] [B1P1Y] [B1P1Z] ... [B1P8X] [B1P8Y] [B1P8Z]
+Log4 : [B2P1X] [B2P1Y] [B2P1Z] ... [B2P8X] [B2P8Y] [B2P8Z]
+……
+[BmPnX] - double，第m个属性盒的第n个顶点的X坐标
+[BmPnY] - double，第m个属性盒的第n个顶点的Y坐标
+[BmPnZ] - double，第m个属性盒的第n个顶点的Z坐标
+
+
+#应始终假设log为异步写入，在所有log均写入完毕后，将调用log->End();调用者可在此时响应返回的查询结果

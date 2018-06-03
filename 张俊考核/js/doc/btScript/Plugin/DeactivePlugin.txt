@@ -1,0 +1,10 @@
+Plugin\DeactivePlugin [plug_name];
+
+作用：
+注销指定的插件
+
+参数：
+[plug_name] - 插件名，可用插件名列表见"Plugin"子目录
+
+返回值：
+若指定插件不存在，Log0为"Error:Plugin not found!"，否则无返回值
