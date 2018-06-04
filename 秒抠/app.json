@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/selectPicture/selectPicture",
+    "pages/modification/modification",
+    "pages/savePicture/savePicture"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "秒抠",
+    "navigationBarTextStyle":"black"
+  }
+}

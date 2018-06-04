@@ -1,0 +1,19 @@
+page{
+   background-color: #141414; 
+  height: 1096rpx;
+}
+
+.changePicture,.selected{
+  width: 50%;
+  height: 110rpx;
+  line-height: 110rpx;
+  font-size: 40rpx;
+  box-sizing: border-box;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+
+.selected{
+  right: 0;
+}

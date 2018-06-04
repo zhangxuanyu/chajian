@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    var arr = [
+	{
+        name:1,
+		price:'321.123'
+	},
+	{
+        name:2,
+		price:'132131.123'
+	},
+	{
+        name:3,
+		price:'2312331.123'
+	},
+	{
+        name:4,
+		price:'231231.123'
+	},
+	{
+        name:5,
+		price:'2323121.123'
+	},
+	{
+        name:6,
+		price:'212331.123'
+	}
+]
+// arr.sort(function(a,b){
+// 	return  parseFloat(a.price)-parseFloat(b.price)
+// })
+arr.sort(function(a,b){
+	return  parseFloat(b.price)-parseFloat(a.price)
+})
+console.log(arr)
+</script>
+</html>

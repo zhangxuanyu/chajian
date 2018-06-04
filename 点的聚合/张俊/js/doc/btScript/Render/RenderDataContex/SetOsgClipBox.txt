@@ -1,0 +1,13 @@
+Render\RenderDataContex\SetOsgClipBox [P1X] [P1Y] [P1Z] ... [P8X] [P8Y] [P8Z];
+
+作用：
+设置Osg裁剪盒，位于裁剪盒内Osg点将被裁剪掉，不予显示。
+
+参数：
+[PnX] - double，裁剪盒的第n个顶点的X坐标
+[PnY] - double，裁剪盒的第n个顶点的Y坐标
+[PnZ] - double，裁剪盒的第n个顶点的Z坐标
+#裁剪盒通过8个顶点定义，先底面点，后顶面点，逆时针，1号点与5号点对齐，2号点与6号点对齐，以此类推
+
+返回值：
+无

@@ -1,0 +1,12 @@
+Render\RenderDataContex\DataPump\OsgScene\CreateAttribDB [src_name] [db_name] [uid];
+
+作用：
+创建属性库
+
+参数：
+[src_name] - string，数据源名称（对于本地数据源，形如“file://E:\TestData”；对于Web远程数据源，形如“http://127.0.0.1:40001/Bentusi”，暂不可以在远程数据源创建属性库）
+[db_name] - string，属性库名称
+[uid] - string，属性库uid，形如“8EABC7B2-2DBF-437B-B5DA-6F0AA1C81B9F”
+
+返回值：
+无

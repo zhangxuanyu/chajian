@@ -1,0 +1,22 @@
+Render\Camera\SetParam [Cx] [Cy] [Cz] [Lx] [Ly] [Lz] [Ux] [Uy] [Uz] [Proj_Type] [Viewport_Width] [Viewport_Height];
+
+作用：
+设置当前相机参数
+
+参数：
+[Cx] - double，相机位置X坐标
+[Cy] - double，相机位置Y坐标
+[Cz] - double，相机位置Z坐标
+[Lx] - double，视点位置X坐标
+[Ly] - double，视点位置Y坐标
+[Lz] - double，视点位置Z坐标
+[Ux] - double，向上向量X分量
+[Uy] - double，向上向量Y分量
+[Uz] - double，向上向量Z分量
+[Proj_Type] - int，相机投影类型，0为球面锥台投影，1为直角锥台投影，2为直角正射投影
+
+返回值：
+无
+
+例子：
+Render\Camera\GetParam -247.105557 -265.963447 150.000000 -247.105557 -165.963447 55.000000 0.000000 0.688749 0.724999 1;

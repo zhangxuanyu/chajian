@@ -1,0 +1,20 @@
+page{
+  background-color: #ccc;
+}
+.outBox{
+  width: 620rpx;
+  height: 620rpx;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 50rpx;
+}
+.saveForPNG,.discard{
+  width: 650rpx;
+  position: absolute;
+  bottom: 14rpx;
+  left: 30rpx;
+  text-align: center;
+}
+.saveForPNG{
+  bottom: 126rpx;
+}

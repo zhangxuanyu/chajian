@@ -1,0 +1,8 @@
+Render\RenderDataContex\DataPump\OsgScene\OsgScene\[scene_name]\AppendNode [fname];
+
+作用：
+在指定的OSG场景中添加一个根节点。目前位于远程数据源的OSG场景无法执行本操作。
+
+参数：
+[scene_name] - string，OSG场景名
+[fname] - string，节点文件的路径文件名。该路径为节点文件相对于场景根路径（既创建OSG场景时的数据源路径）的相对路径，例：若创建OSG时数据源为"file://E:\Test"，欲导入“E:\Test\Porj1\Model.osgb”，则fname应为“Porj1\Model.osgb”。原则上fname应为数据源路径的真子路径。

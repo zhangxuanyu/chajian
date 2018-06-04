@@ -1,0 +1,11 @@
+Render\RenderDataContex\DataPump\OsgScene\OpenOsgScene [src_name] [scene_name];
+
+作用：
+打开场景
+
+参数：
+[src_name] - string，数据源名称（对于本地数据源，形如“file://E:\TestData”；对于Web远程数据源，形如“http://127.0.0.1:40001/Bentusi”）
+[scene_name] - string，场景名称
+
+返回值：
+无

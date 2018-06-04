@@ -1,0 +1,20 @@
+<!--图片  -->
+<view class='outBox'>
+  <image src='../../image/bg.png' mode='aspectFill' style='width:620rpx;height:620rpx;'></image>
+  <image src='{{finalSrc}}' bindtap='preview' mode='aspectFit' style=' background-color: white;width:{{showWidth}}rpx;height:{{showHeight}}rpx;position:fixed;top:{{showTop}}rpx;left:{{showLeft}}rpx;'></image> 
+  <!-- <canvas canvas-id="myCanvasPic" style="width:580rpx;height:580rpx;position:fixed;top:70rpx;left:85rpx;" ></canvas> -->
+</view>
+<!--提示  -->
+<view style='display:{{hidden}};position:fixed;top:716rpx;left:255rpx'>
+  <icon type="success" size="20" style='float:left;margin-top:8rpx'/>
+  <view style='float:left;color:rgb(9,187,7);font-size:34rpx;padding-left:16rpx;padding-top:6rpx;'>图片生成成功！</view>
+</view>
+
+
+<!--操作  -->
+<view class='saveForPNG' bindtap='saveForPNG'>
+  <image src='../../image/save.png' style='width:690rpx;height:88rpx'></image>
+</view>
+<view class='discard' bindtap='discard'>
+  <image src='../../image/delete.png' style='width:690rpx;height:88rpx'></image>
+</view>

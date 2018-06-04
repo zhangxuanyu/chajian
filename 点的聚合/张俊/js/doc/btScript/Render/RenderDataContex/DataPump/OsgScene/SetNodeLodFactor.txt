@@ -1,0 +1,10 @@
+Render\RenderDataContex\DataPump\OsgScene\SetNodeLodFactor [lod_factor];
+
+作用：
+设置节点LOD级别系数
+
+参数：
+[lod_factor] - float，节点LOD级别系数，默认值1.2
+
+返回值：
+无

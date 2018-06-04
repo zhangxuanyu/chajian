@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DappVision</title>
+	<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">  
+	<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
+	<script >hljs.initHighlightingOnLoad();</script>  
+</head>
+<style>
+body{
+	background-color: #f0f0f0;
+	margin: 0;
+}
+.top{
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	background-color: #fff;
+	box-shadow: 0 1px 3px 0 rgba(102,102,102,0.40);
+}
+.intop{
+	width: 1240px;
+	height: 70px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.intop img{
+	float: left;
+	width: 157px;
+	height: 33px;
+	margin-top: 15px;
+}
+.search{
+	width: 110px;
+	height: 38px;
+	border-radius: 4px;
+	float: right;
+	line-height: 38px;
+	margin-top: 15px;
+	background-image: url('http://dappvision.io/image/search-0.png');
+	-webkit-background-size: cover;
+	background-size: cover;
+	text-align: center;
+	cursor: pointer;
+}
+.search:hover{
+	background-image: url('http://dappvision.io/image/search-1.png');
+}
+	.address{
+		width: 960px;
+		height: 125px;
+		margin: 0 auto;
+		margin-top: 35px;
+		text-align: left;
+		font-size: 20px;
+		line-height: 22px;
+		padding: 10px 30px;
+		font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+		background: #FFFFFF;
+		box-shadow: 0 2px 5px 0 rgba(0,0,0,0.40);
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+	.address p{
+		height: 50px;
+		line-height: 50px;
+		margin: 0px;
+		color: #000;
+		overflow: hidden;
+	}
+	.address p span{
+		color: #666;
+		font-size: 16px;
+	}
+	.fr{
+		border-bottom: 1px solid #DDDDDD;
+	}
+	.cont{
+		width: 960px;
+		margin: 0 auto;
+		margin-top: 20px;
+		
+	}
+	.conttop{
+		width: 960px;
+		height: 35px;
+		line-height: 35px;
+		margin-bottom: -27px;
+		background-color: #fff;
+		border-radius: 5px 5px 0px 0px;
+		padding-left: 10px;
+		box-sizing: border-box;
+	}
+</style>
+<body>
+<div class="top">
+	<div class="intop">
+		<a href="http://dappvision.io"><img src="http://dappvision.io/static/img/logo.png" alt="" id="logo" ></a>
+		<a href="http://dappvision.io/search"><div class="search"></div></a>
+		<!-- <input type="" name=""  placeholder="搜索代码"> -->
+	</div>
+</div>
+<div class="address">
+	<p class="fr"><span style="float: left;font-size: 20px;color: #000;">Contract Abstract: <span>12IJHNJKBkjidjwjrowejfff</span></span>   <span style="float: right;font-size: 20px;color: #000;">Name: <span>dpark</span></span></p>
+	<p> HX: <span>aosijdaiojdaojdoiasjdoiia3w34o3jaoij34jqi23j</span></p>
+</div>
+
+<div class="cont">
+<div class="conttop">
+JavaScript
+</div>
+	<div ng-include="'template/header.html'"></div>
+        <div>
+            <pre>
+                <code class="lang-javascript" style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;font-size: 14px;">
+        function init( ){
+            $scope.req.getArticle();
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        }
+        aaa( ){
+        	console.log(111111)//wuwuwuwuwu
+        	for(var i = 0;i<9;i++){
+        		console.log(i)
+        	}
+        }
+                
+               </code>
+            </pre>
+        </div>
+
+</div>
+	
+</body>
+<script>
+
+</script>
+</html>

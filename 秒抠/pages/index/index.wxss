@@ -1,0 +1,16 @@
+/**index.wxss**/
+page{
+  background-color: #f4f4f4;
+}
+ .upLoadImg{
+  width: 146rpx;
+  height: 216rpx;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 382rpx;
+} 
+.text{
+  height: 90rpx;
+  font-size: 32rpx;
+  line-height: 90rpx;
+}

@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>promise</title>
+	<meta charset="UTF-8">
+	<title>Document</title>
 </head>
 <body>
-<script src="js/jquery.js"></script>
-<script>
-    ajax1().then(
-        function(){
-            ajax2();
-        }
-    ).catch(function (){
-        console.log('有毛病了');
-    })
-    var len = 0;
-    function ajax1(){
-        var pro = new Promise(function(res,red){
-            $.get('http://182.254.146.100:3000/api/getindexmenu',function(data){
-                len = 1;
-                //表示执行then里面的function
-               if(true){
-                    res();
-                }else{
-                    red();
-                }
-            })
-        })
-        return pro;
-    }
-
-    function ajax2(){
-        $.get('http://127.0.0.1:3000/api/getindexmenu',function(data){
-            console.log(len);
-        })
-    }
-</script>
+	
 </body>
+<script>
+	function aa(){
+		var p = new Promise(function(resolve,reject){
+			console.log(1111)
+			setTimeout(function(){
+				resolve(2222)
+			},2000)
+		})
+		return p
+	}
+	function bb(){
+		var p = new Promise(function(resolve,reject){
+			console.log(3333)
+			setTimeout(function(){
+				resolve(4444)
+			},2000)
+		})
+		return p
+	}
+	function cc(){
+		var p = new Promise(function(resolve,reject){
+			console.log(5555)
+			setTimeout(function(){
+				resolve(6666)
+			},2000)
+		})
+		return p
+	}
+	aa().then(function(data){
+		console.log(data)
+		cc()
+		// return cc()
+	}).then(function(data){
+		console.log(data)
+		bb()
+		// return bb()
+	}).then(function(data){
+		console.log(data)
+	})
+</script>
 </html>

@@ -1,0 +1,8 @@
+<!--index.wxml-->
+
+<view class='upLoadImg' bindtap='UpLoad'> 
+<image src='../../image/upLoad.png' style='width:146rpx;height:146rpx;'></image>
+<view class='text'>上传图片</view>
+
+</view>
+

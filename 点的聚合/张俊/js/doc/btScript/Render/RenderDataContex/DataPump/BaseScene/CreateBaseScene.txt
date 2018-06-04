@@ -1,0 +1,12 @@
+Render\RenderDataContex\DataPump\BaseScene\CreateBaseScene [src_name] [scene_name] [uid];
+
+作用：
+创建BaseScene
+
+参数：
+[src_name] - string，数据源名称（对于本地数据源，形如“file://E:\TestData”；对于Web远程数据源，形如“http://127.0.0.1:40001/Bentusi”，暂不可以在远程数据源创建场景）
+[scene_name] - string，场景名称
+[uid] - string，场景uid，形如"C0996D32-3379-44AA-95AB-813BBC8C0E46"
+
+返回值：
+无

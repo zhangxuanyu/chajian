@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.one{
+		width: 100px;
+		height: 100px;
+		background-color: red;
+	}
+	.two{
+		width: 50px;
+		height: 50px;
+		background-color: green;
+	}
+	.three{
+		width: 50px;
+		height: 50px;
+		background-color: blue;
+	}
+</style>
+<body>
+	<div class="one"></div>
+
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+var aa = 2
+var three = 'three'
+var two = 'two'
+var arr = [1,2,3,4,5,6]
+for(let i = 0;i<arr.length;i++){
+	$('.one').append(
+		`<div class="${arr[i]%2==1?three:two}"></div>`
+	)
+}
+
+var the1 = document.querySelectorAll(".two");
+the1[1].style.marginTop = '20px'
+the1[2].style.marginTop = '10px'
+the1[3].style.marginTop = '5px'
+</script>
+</html>

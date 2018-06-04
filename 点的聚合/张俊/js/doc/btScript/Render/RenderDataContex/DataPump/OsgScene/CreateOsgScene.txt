@@ -1,0 +1,11 @@
+Render\RenderDataContex\DataPump\OsgScene\CreateOsgScene [src_name] [scene_name] [uid];
+
+作用：
+创建OSG场景
+
+[src_name] - string，数据源路径名称（对于本地数据源，形如“file://E:\TestData”；对于Web远程数据源，形如“http://127.0.0.1:40001/Bentusi”，暂不可以在远程数据源创建场景）
+[scene_name] - string，场景名称
+[uid] - string，场景uid，形如"FDD438E1-2FB3-4FE5-80BA-FF7D02CDB643"
+
+返回值：
+无

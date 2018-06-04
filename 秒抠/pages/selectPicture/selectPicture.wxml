@@ -1,0 +1,19 @@
+<!--logs.wxml-->
+<!--图片  -->
+<canvas disable-scroll="true" canvas-id="myCanvasPic" style="width:100%;height:1096rpx;margin:0 auto;box-sizing:border-box;z-index:0;" ></canvas>
+<canvas disable-scroll="true" canvas-id="myCanvas" style="width:100%;height:1096rpx;margin:0 auto;box-sizing:border-box;z-index:1;position:fixed;top:0;left:0" bindtouchstart='start' bindtouchmove='move' bindtouchend='end'/>
+
+
+
+
+  <!--提示  -->
+<image src='../../image/tips.png' style='width:354rpx;height:32rpx;position:fixed;top:1040rpx;left:198rpx;'></image>
+<!--操作  -->
+<view>
+  <view class='changePicture' bindtap='changePicture'>
+    <image src='../../image/changePicture.png' style='height:110rpx;width:375rpx;'></image>
+  </view>
+  <view class='selected' bindtap='selected'>
+    <image src='../../image/selected.png' style='height:110rpx;width:375rpx;'></image>
+  </view>
+</view>

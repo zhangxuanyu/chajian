@@ -1,0 +1,41 @@
+page{
+   background-color: #141414;  
+  height: 1096rpx;
+}
+.go,.back{
+  width: 98rpx;
+  height: 98rpx;
+  position: fixed;
+  bottom: 200rpx;
+ 
+}
+.back{
+  left: 30rpx
+}
+.go{
+  right: 160rpx;
+}
+.remodification,.productPicture{
+  width: 50%;
+  height: 110rpx;
+  line-height: 110rpx;
+  font-size: 40rpx;
+  box-sizing: border-box;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+.remodification{
+  background-color: white;
+}
+.productPicture{
+ right: 0;
+}
+.review{
+  width: 98rpx;
+  height: 98rpx;
+  position: fixed;
+  bottom: 200rpx;
+  right:30rpx;
+
+}

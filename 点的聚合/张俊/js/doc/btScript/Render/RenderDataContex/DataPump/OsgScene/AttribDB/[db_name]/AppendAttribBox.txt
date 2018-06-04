@@ -1,0 +1,16 @@
+Render\RenderDataContex\DataPump\OsgScene\AttribDB\[db_name]\AppendAttribBox [key] [n] [B1P1X] [B1P1Y] [B1P1Z] ... [B1P8X] [B1P8Y] [B1P8Z] ...[BnP0X] [BnP0Y] [BnP0Z]... [BnP8X] [BnP8Y] [BnP8Z];
+
+作用：
+在指定的属性库中添加一条属性记录
+
+参数：
+[db_name] - string，属性库名称（目前不可以在位于远程数据源的属性库中添加属性记录）
+[key] - string，属性主键
+[n] - int，属性盒总数，目前一条属性记录只能包含一个属性盒
+[BmPnX] - double，第m个属性盒的第n个顶点的X坐标
+[BmPnY] - double，第m个属性盒的第n个顶点的Y坐标
+[BmPnZ] - double，第m个属性盒的第n个顶点的Z坐标
+#每个属性盒通过8个顶点定义，先底面点，后顶面点，逆时针，1号点与5号点对齐，2号点与6号点对齐，以此类推
+
+返回值：
+无

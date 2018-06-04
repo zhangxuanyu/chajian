@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <iframe src="用input来包含点击信息.html" frameborder="0" id="iifr"></iframe>
+    </body>
+    <script>
+    var iframe = document.getElementById("iifr")
+    console.log(iframe);
+    console.log(iframe.contents().find("input"));
+    </script>
+</html>

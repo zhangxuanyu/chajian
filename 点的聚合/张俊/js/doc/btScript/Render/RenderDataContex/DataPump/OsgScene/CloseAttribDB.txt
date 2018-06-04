@@ -1,0 +1,10 @@
+Render\RenderDataContex\DataPump\OsgScene\CloseAttribDB [db_name];
+
+作用：
+关闭指定的属性库
+
+参数：
+[db_name] - string，欲关闭的属性库的名字
+
+返回值：
+无

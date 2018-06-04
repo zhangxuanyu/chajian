@@ -1,0 +1,10 @@
+Render\RenderDataContex\DataPump\BaseScene\CloseBaseScene [Scene_Name];
+
+作用：
+关闭指定的BaseScene
+
+参数：
+[Scene_Name] - string，欲关闭的BaseScene的名字
+
+返回值：
+无

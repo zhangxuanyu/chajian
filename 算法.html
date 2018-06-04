@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+		<div id="market"></div>
+		<div id="marketall"></div>
+		<div id="marketchange"></div>
+	
+
+		<div id="trade"></div>
+		<div id="tradeall"></div>
+		<div id="tradechange"></div>
+	
+
+		<div id="git"></div>
+		<div id="gitattention"></div>
+		<div id="gitonline"></div>
+	
+
+		<div id="social"></div>
+		<div id="reddit"></div>
+		<div id="redditat"></div>
+		<div id="redditon"></div>
+		<div id="twitter"></div>
+		<div id="tele"></div>
+		<div id="facebook"></div>
+	
+</body>
+<script src="yestarday.js"></script>
+<script src="today.js"></script>
+<script>
+// console.log(yesarr)
+// console.log(todayarr)
+var toarr=[]
+	todayarr.forEach(function(e){
+
+		toarr.push({})
+		 for (const key in e) {
+		 	if(key == 'market_value'){
+		 		toarr[toarr.length - 1]['market_value'] = e[key]
+		 	}
+		 	if( key == 'trade_volumes'){
+		 		toarr[toarr.length - 1]['trade_volumes'] = e[key]
+		 	}
+		 	if( key == 'github'){
+		 		if(e[key].fork == -999){
+		 			e[key].fork = 0
+		 		}
+		 		if(e[key].star == -999){
+		 			e[key].star == 0
+		 		}
+		 		if(e[key].watch == -999){
+		 			e[key].watch == 0
+		 		}
+		 		if(e[key].commits == -999){
+		 			e[key].commits = 0
+		 		}
+		 		toarr[toarr.length - 1]['github'] = e[key]
+		 	}
+		 	if( key == 'society'){
+		 		toarr[toarr.length - 1]['society'] = e[key]
+		 	}
+		 }
+	})
+// console.log(toarr)
+
+var yearr=[]
+	yesarr.forEach(function(e){
+
+		yearr.push({})
+		 for (const key in e) {
+		 	if(key == 'market_value'){
+		 		yearr[yearr.length - 1]['market_value'] = e[key]
+		 	}
+		 	if( key == 'trade_volumes'){
+		 		yearr[yearr.length - 1]['trade_volumes'] = e[key]
+		 	}
+		 }
+	})
+// console.log(yearr)
+//总市值
+var allmark = 0
+//昨日总市值
+var yeallmark = 0
+//临时最大最小数组
+var temp = []
+//临时最大最小值
+var maxn = 0,minn = 0
+//市值变化量数组最大最小
+var tempch = [],tempchf = []
+var maxch = 0, minch = 0,maxchf = 0,minchf = 0
+
+//总交易量
+var allvlo = 0
+var yeallvlo = 0
+var tempvlo = []
+var maxvlo = 0, minvlo = 0;
+var tempvloch = [],tempvlochf = []
+var maxvloch = 0, minvloch = 0,maxvlochf = 0,minvlochf = 0
+
+//关注量
+var allatt = 0
+//临时最大最小数组
+var tempatt = []
+//临时最大最小值
+var maxatt = 0,minatt = 0 
+
+//commits活跃
+var allcom = 0
+//临时最大最小数组
+var tempcom = []
+//临时最大最小值
+var maxcom = 0,mincom = 0 
+for(var i = 0;i<100;i++){
+	allmark = toarr[i]['market_value'] + allmark
+	yeallmark = yeallmark + yearr[i].market_value
+	//交易量
+	allvlo = toarr[i]['trade_volumes'] + allvlo
+	yeallvlo = yeallvlo + yearr[i].trade_volumes
+	//昨日市值和交易量
+	toarr[i]['yesmark'] = yearr[i].market_value
+	toarr[i]['volum'] = yearr[i].trade_volumes
+	//关注量
+	allatt = allatt + toarr[i].github.fork + toarr[i].github.star + toarr[i].github.watch
+
+	//commits
+	allcom = allcom + toarr[i].github.commits
+
+}
+	
+	// console.log(yeallmark)
+	// 数据整理完成
+for(var i = 0;i<100;i++){
+	//市值变化量得分
+	toarr[i]['chmarkval'] = (toarr[i]['market_value'] - toarr[i]['yesmark'])
+	//市值占比得分
+	toarr[i]['markval'] = toarr[i]['market_value']/allmark
+	temp.push(toarr[i]['market_value']/allmark)
+	//市值变化量
+	if((toarr[i]['market_value'] - toarr[i]['yesmark']) > 0 ){
+		tempch.push(Math.abs((toarr[i]['market_value'] - toarr[i]['yesmark'])/(allmark - yeallmark)))
+	}else if((toarr[i]['market_value'] - toarr[i]['yesmark']) < 0 ){
+		tempchf.push(Math.abs((toarr[i]['market_value'] - toarr[i]['yesmark'])/(allmark - yeallmark)))
+	}
+
+	//交易量变化量得分
+	toarr[i]['chvolval'] = (toarr[i]['trade_volumes'] - toarr[i]['volum'])
+	//交易量占比得分
+	toarr[i]['volval'] = toarr[i]['trade_volumes']/allvlo
+	tempvlo.push(toarr[i]['trade_volumes']/allvlo)
+	//交易量变化量
+	if((toarr[i]['trade_volumes'] - toarr[i]['volum']) > 0 ){
+		tempvloch.push(Math.abs((toarr[i]['trade_volumes'] - toarr[i]['volum'])/(allvlo - yeallvlo)))
+	}else if((toarr[i]['trade_volumes'] - toarr[i]['volum']) < 0 ){
+		tempvlochf.push(Math.abs((toarr[i]['trade_volumes'] - toarr[i]['volum'])/(allvlo - yeallvlo)))
+	}
+
+	//关注量占比得分
+	toarr[i]['att'] = (toarr[i].github.fork + toarr[i].github.star + toarr[i].github.watch)/allatt
+	tempatt.push((toarr[i].github.fork + toarr[i].github.star + toarr[i].github.watch)/allatt)
+	
+	//commits占比得分
+	toarr[i]['com'] = toarr[i].github.commits/allcom
+	tempcom.push(toarr[i].github.commits/allcom)
+}
+//市值
+// console.log(tempch)
+maxn = Math.max.apply(null, temp);//最大值
+minn = Math.min.apply(null, temp);//最小值
+maxn = (maxn - minn)/17
+
+maxch = Math.max.apply(null, tempch);//最大值
+minch = Math.min.apply(null, tempch);//最小值
+maxch = (maxch - minch)/15
+
+maxchf = Math.max.apply(null, tempchf);//最大值
+minchf = Math.min.apply(null, tempchf);//最小值
+maxchf = (maxchf - minchf)/4
+
+// console.log(maxn)
+// 
+//交易量
+// console.log(tempch)
+maxvlo = Math.max.apply(null, tempvlo);//最大值
+minvlo = Math.min.apply(null, tempvlo);//最小值
+maxvlo = (maxvlo - minvlo)/17
+
+maxvloch = Math.max.apply(null, tempvloch);//最大值
+minvloch = Math.min.apply(null, tempvloch);//最小值
+maxvloch = (maxvloch - minvloch)/15
+
+maxvlochf = Math.max.apply(null, tempvlochf);//最大值
+minvlochf = Math.min.apply(null, tempvlochf);//最小值
+maxvlochf = (maxvlochf - minvlochf)/4
+
+//关注量
+maxatt = Math.max.apply(null, tempatt);//最大值
+minatt = Math.min.apply(null, tempatt);//最小值
+maxatt = (maxatt - minatt)/17
+
+//commits
+maxcom = Math.max.apply(null, tempcom);//最大值
+mincom = Math.min.apply(null, tempcom);//最小值
+maxcom = (maxcom - mincom)/17
+
+for(var i = 0;i<100;i++){
+	//市值占比
+	if(toarr[i]['markval']>0 && toarr[i]['markval']< maxn){
+		toarr[i]['markval'] = 10
+	}else if(toarr[i]['markval']>maxn && toarr[i]['markval']< maxn*2){
+		toarr[i]['markval'] = 15
+	}else if(toarr[i]['markval']>maxn*2 && toarr[i]['markval']< maxn*3){
+		toarr[i]['markval'] = 20
+	}else if(toarr[i]['markval']>maxn*3 && toarr[i]['markval']< maxn*4){
+		toarr[i]['markval'] = 25
+	}else if(toarr[i]['markval']>maxn*4 && toarr[i]['markval']< maxn*5){
+		toarr[i]['markval'] = 30
+	}else if(toarr[i]['markval']>maxn*5 && toarr[i]['markval']< maxn*6){
+		toarr[i]['markval'] = 35
+	}else if(toarr[i]['markval']>maxn*6 && toarr[i]['markval']< maxn*7){
+		toarr[i]['markval'] = 40
+	}else if(toarr[i]['markval']>maxn*7 && toarr[i]['markval']< maxn*8){
+		toarr[i]['markval'] = 45
+	}else if(toarr[i]['markval']>maxn*8 && toarr[i]['markval']< maxn*9){
+		toarr[i]['markval'] = 50
+	}else if(toarr[i]['markval']>maxn*9 && toarr[i]['markval']< maxn*10){
+		toarr[i]['markval'] = 55
+	}else if(toarr[i]['markval']>maxn*10 && toarr[i]['markval']< maxn*11){
+		toarr[i]['markval'] = 60
+	}else if(toarr[i]['markval']>maxn*11 && toarr[i]['markval']< maxn*12){
+		toarr[i]['markval'] = 65
+	}else if(toarr[i]['markval']>maxn*12 && toarr[i]['markval']< maxn*13){
+		toarr[i]['markval'] = 70
+	}else if(toarr[i]['markval']>maxn*13 && toarr[i]['markval']< maxn*14){
+		toarr[i]['markval'] = 75
+	}else if(toarr[i]['markval']>maxn*14 && toarr[i]['markval']< maxn*15){
+		toarr[i]['markval'] = 80
+	}else if(toarr[i]['markval']>maxn*15 && toarr[i]['markval']< maxn*16){
+		toarr[i]['markval'] = 85
+	}else if(toarr[i]['markval']>maxn*16 && toarr[i]['markval']< maxn*17){
+		toarr[i]['markval'] = 90
+	}else if(toarr[i]['markval']>maxn*17){
+		toarr[i]['markval'] = 95
+	}
+
+	//市值变化量
+	var aa = Math.abs(toarr[i]['chmarkval']/(allmark - yeallmark))
+	if(toarr[i]['chmarkval'] > 0){
+		if( aa> 0 && aa < maxch){
+			toarr[i]['chmarkval'] = 25
+		}else if(aa > maxch && aa < maxch*2){
+			toarr[i]['chmarkval'] = 30
+		}else if(aa > maxch*2 && aa < maxch*3){
+			toarr[i]['chmarkval'] = 35
+		}else if(aa > maxch*3 && aa < maxch*4){
+			toarr[i]['chmarkval'] = 40
+		}else if(aa > maxch*4 && aa < maxch*5){
+			toarr[i]['chmarkval'] = 45
+		}else if(aa > maxch*5 && aa < maxch*6){
+			toarr[i]['chmarkval'] = 50
+		}else if(aa > maxch*6 && aa < maxch*7){
+			toarr[i]['chmarkval'] = 55
+		}else if(aa > maxch*7 && aa < maxch*8){
+			toarr[i]['chmarkval'] = 60
+		}else if(aa > maxch*8 && aa < maxch*9){
+			toarr[i]['chmarkval'] = 65
+		}else if(aa > maxch*9 && aa < maxch*10){
+			toarr[i]['chmarkval'] = 70
+		}else if(aa > maxch*10 && aa < maxch*11){
+			toarr[i]['chmarkval'] = 75
+		}else if(aa > maxch*11 && aa < maxch*12){
+			toarr[i]['chmarkval'] = 80
+		}else if(aa > maxch*12 && aa < maxch*13){
+			toarr[i]['chmarkval'] = 85
+		}else if(aa > maxch*13 && aa < maxch*14){
+			toarr[i]['chmarkval'] = 90
+		}else if(aa > maxch*14 ){
+			toarr[i]['chmarkval'] = 95
+		}
+	}else if(toarr[i]['chmarkval'] < 0){
+		if(aa > 0 && aa < maxchf){
+			toarr[i]['chmarkval'] = 20
+		}else if(aa > maxchf && aa < maxchf*2){
+			toarr[i]['chmarkval'] = 15
+		}else if(aa > maxchf*2 && aa < maxchf*3){
+			toarr[i]['chmarkval'] = 10
+		}else if(aa > maxchf*3){
+			toarr[i]['chmarkval'] = 5
+		}
+	}
+
+
+	//交易占比
+	if(toarr[i]['volval']>0 && toarr[i]['volval']< maxvlo){
+		toarr[i]['volval'] = 10
+	}else if(toarr[i]['volval']>maxvlo && toarr[i]['volval']< maxvlo*2){
+		toarr[i]['volval'] = 15
+	}else if(toarr[i]['volval']>maxvlo*2 && toarr[i]['volval']< maxvlo*3){
+		toarr[i]['volval'] = 20
+	}else if(toarr[i]['volval']>maxvlo*3 && toarr[i]['volval']< maxvlo*4){
+		toarr[i]['volval'] = 25
+	}else if(toarr[i]['volval']>maxvlo*4 && toarr[i]['volval']< maxvlo*5){
+		toarr[i]['volval'] = 30
+	}else if(toarr[i]['volval']>maxvlo*5 && toarr[i]['volval']< maxvlo*6){
+		toarr[i]['volval'] = 35
+	}else if(toarr[i]['volval']>maxvlo*6 && toarr[i]['volval']< maxvlo*7){
+		toarr[i]['volval'] = 40
+	}else if(toarr[i]['volval']>maxvlo*7 && toarr[i]['volval']< maxvlo*8){
+		toarr[i]['volval'] = 45
+	}else if(toarr[i]['volval']>maxvlo*8 && toarr[i]['volval']< maxvlo*9){
+		toarr[i]['volval'] = 50
+	}else if(toarr[i]['volval']>maxvlo*9 && toarr[i]['volval']< maxvlo*10){
+		toarr[i]['volval'] = 55
+	}else if(toarr[i]['volval']>maxvlo*10 && toarr[i]['volval']< maxvlo*11){
+		toarr[i]['volval'] = 60
+	}else if(toarr[i]['volval']>maxvlo*11 && toarr[i]['volval']< maxvlo*12){
+		toarr[i]['volval'] = 65
+	}else if(toarr[i]['volval']>maxvlo*12 && toarr[i]['volval']< maxvlo*13){
+		toarr[i]['volval'] = 70
+	}else if(toarr[i]['volval']>maxvlo*13 && toarr[i]['volval']< maxvlo*14){
+		toarr[i]['volval'] = 75
+	}else if(toarr[i]['volval']>maxvlo*14 && toarr[i]['volval']< maxvlo*15){
+		toarr[i]['volval'] = 80
+	}else if(toarr[i]['volval']>maxvlo*15 && toarr[i]['volval']< maxvlo*16){
+		toarr[i]['volval'] = 85
+	}else if(toarr[i]['volval']>maxvlo*16 && toarr[i]['volval']< maxvlo*17){
+		toarr[i]['volval'] = 90
+	}else if(toarr[i]['volval']>maxvlo*17){
+		toarr[i]['volval'] = 95
+	}
+
+	//交易变化量
+	var bb = Math.abs(toarr[i]['chvolval']/(allvlo - yeallvlo))
+	if(toarr[i]['chvolval'] > 0){
+		if( bb> 0 && bb < maxvloch){
+			toarr[i]['chvolval'] = 25
+		}else if(bb > maxvloch && bb < maxvloch*2){
+			toarr[i]['chvolval'] = 30
+		}else if(bb > maxvloch*2 && bb < maxvloch*3){
+			toarr[i]['chvolval'] = 35
+		}else if(bb > maxvloch*3 && bb < maxvloch*4){
+			toarr[i]['chvolval'] = 40
+		}else if(bb > maxvloch*4 && bb < maxvloch*5){
+			toarr[i]['chvolval'] = 45
+		}else if(bb > maxvloch*5 && bb < maxvloch*6){
+			toarr[i]['chvolval'] = 50
+		}else if(bb > maxvloch*6 && bb < maxvloch*7){
+			toarr[i]['chvolval'] = 55
+		}else if(bb > maxvloch*7 && bb < maxvloch*8){
+			toarr[i]['chvolval'] = 60
+		}else if(bb > maxvloch*8 && bb < maxvloch*9){
+			toarr[i]['chvolval'] = 65
+		}else if(bb > maxvloch*9 && bb < maxvloch*10){
+			toarr[i]['chvolval'] = 70
+		}else if(bb > maxvloch*10 && bb < maxvloch*11){
+			toarr[i]['chvolval'] = 75
+		}else if(bb > maxvloch*11 && bb < maxvloch*12){
+			toarr[i]['chvolval'] = 80
+		}else if(bb > maxvloch*12 && bb < maxvloch*13){
+			toarr[i]['chvolval'] = 85
+		}else if(bb > maxvloch*13 && bb < maxvloch*14){
+			toarr[i]['chvolval'] = 90
+		}else if(bb > maxvloch*14 ){
+			toarr[i]['chvolval'] = 95
+		}
+	}else if(toarr[i]['chvolval'] < 0){
+		if(bb > 0 && bb < maxvlochf){
+			toarr[i]['chvolval'] = 20
+		}else if(bb > maxvlochf && bb < maxvlochf*2){
+			toarr[i]['chvolval'] = 15
+		}else if(bb > maxvlochf*2 && bb < maxvlochf*3){
+			toarr[i]['chvolval'] = 10
+		}else if(bb > maxvlochf*3){
+			toarr[i]['chvolval'] = 5
+		}
+	}
+
+		//关注占比
+	if(toarr[i]['att']>0 && toarr[i]['att']< maxatt){
+		toarr[i]['att'] = 10
+	}else if(toarr[i]['att']>=maxatt && toarr[i]['att']< maxatt*2){
+		toarr[i]['att'] = 15
+	}else if(toarr[i]['att']>=maxatt*2 && toarr[i]['att']< maxatt*3){
+		toarr[i]['att'] = 20
+	}else if(toarr[i]['att']>=maxatt*3 && toarr[i]['att']< maxatt*4){
+		toarr[i]['att'] = 25
+	}else if(toarr[i]['att']>=maxatt*4 && toarr[i]['att']< maxatt*5){
+		toarr[i]['att'] = 30
+	}else if(toarr[i]['att']>=maxatt*5 && toarr[i]['att']< maxatt*6){
+		toarr[i]['att'] = 35
+	}else if(toarr[i]['att']>=maxatt*6 && toarr[i]['att']< maxatt*7){
+		toarr[i]['att'] = 40
+	}else if(toarr[i]['att']>=maxatt*7 && toarr[i]['att']< maxatt*8){
+		toarr[i]['att'] = 45
+	}else if(toarr[i]['att']>=maxatt*8 && toarr[i]['att']< maxatt*9){
+		toarr[i]['att'] = 50
+	}else if(toarr[i]['att']>=maxatt*9 && toarr[i]['att']< maxatt*10){
+		toarr[i]['att'] = 55
+	}else if(toarr[i]['att']>=maxatt*10 && toarr[i]['att']< maxatt*11){
+		toarr[i]['att'] = 60
+	}else if(toarr[i]['att']>=maxatt*11 && toarr[i]['att']< maxatt*12){
+		toarr[i]['att'] = 65
+	}else if(toarr[i]['att']>=maxatt*12 && toarr[i]['att']< maxatt*13){
+		toarr[i]['att'] = 70
+	}else if(toarr[i]['att']>=maxatt*13 && toarr[i]['att']< maxatt*14){
+		toarr[i]['att'] = 75
+	}else if(toarr[i]['att']>=maxatt*14 && toarr[i]['att']< maxatt*15){
+		toarr[i]['att'] = 80
+	}else if(toarr[i]['att']>=maxatt*15 && toarr[i]['att']< maxatt*16){
+		toarr[i]['att'] = 85
+	}else if(toarr[i]['att']>=maxatt*16 && toarr[i]['att']< maxatt*17){
+		toarr[i]['att'] = 90
+	}else if(toarr[i]['att']>=maxatt*17){
+		toarr[i]['att'] = 95
+	}else{
+		toarr[i]['att'] = 0
+	}
+
+	//commit占比
+
+	if(toarr[i]['com']>0 && toarr[i]['com']< maxcom){
+		toarr[i]['com'] = 10
+	}else if(toarr[i]['com']>=maxcom && toarr[i]['com']< maxcom*2){
+		toarr[i]['com'] = 15
+	}else if(toarr[i]['com']>=maxcom*2 && toarr[i]['com']< maxcom*3){
+		toarr[i]['com'] = 20
+	}else if(toarr[i]['com']>=maxcom*3 && toarr[i]['com']< maxcom*4){
+		toarr[i]['com'] = 25
+	}else if(toarr[i]['com']>=maxcom*4 && toarr[i]['com']< maxcom*5){
+		toarr[i]['com'] = 30
+	}else if(toarr[i]['com']>=maxcom*5 && toarr[i]['com']< maxcom*6){
+		toarr[i]['com'] = 35
+	}else if(toarr[i]['com']>=maxcom*6 && toarr[i]['com']< maxcom*7){
+		toarr[i]['com'] = 40
+	}else if(toarr[i]['com']>=maxcom*7 && toarr[i]['com']< maxcom*8){
+		toarr[i]['com'] = 45
+	}else if(toarr[i]['com']>=maxcom*8 && toarr[i]['com']< maxcom*9){
+		toarr[i]['com'] = 50
+	}else if(toarr[i]['com']>=maxcom*9 && toarr[i]['com']< maxcom*10){
+		toarr[i]['com'] = 55
+	}else if(toarr[i]['com']>=maxcom*10 && toarr[i]['com']< maxcom*11){
+		toarr[i]['com'] = 60
+	}else if(toarr[i]['com']>=maxcom*11 && toarr[i]['com']< maxcom*12){
+		toarr[i]['com'] = 65
+	}else if(toarr[i]['com']>=maxcom*12 && toarr[i]['com']< maxcom*13){
+		toarr[i]['com'] = 70
+	}else if(toarr[i]['com']>=maxcom*13 && toarr[i]['com']< maxcom*14){
+		toarr[i]['com'] = 75
+	}else if(toarr[i]['com']>=maxcom*14 && toarr[i]['com']< maxcom*15){
+		toarr[i]['com'] = 80
+	}else if(toarr[i]['com']>=maxcom*15 && toarr[i]['com']< maxcom*16){
+		toarr[i]['com'] = 85
+	}else if(toarr[i]['com']>=maxcom*16 && toarr[i]['com']< maxcom*17){
+		toarr[i]['com'] = 90
+	}else if(toarr[i]['com']>=maxcom*17){
+		toarr[i]['com'] = 95
+	}
+
+	toarr[i]['shizhi'] = toarr[i]['chmarkval']*0.4 + toarr[i]['markval'] *0.6
+	toarr[i]['jiaoyi'] = toarr[i]['chvolval']*0.4 + toarr[i]['volval'] *0.6
+	toarr[i]['gitscore'] = toarr[i]['att']*0.4 + toarr[i]['com'] *0.6
+}
+//市值占比得分完成
+
+console.log(toarr)
+var show = []
+toarr.forEach(function(e){
+		show.push({})
+		 for (const key in e) {
+		 	if(key == 'chmarkval'){
+		 		show[show.length - 1]['market_change'] = e[key]
+		 	}
+		 	if(key == 'markval'){
+		 		show[show.length - 1]['market_value'] = e[key]
+		 	}
+		 	if(key == 'shizhi'){
+		 		show[show.length - 1]['market'] = e[key]
+		 	}
+		 	if(key == 'chvolval'){
+		 		show[show.length - 1]['volume_change'] = e[key]
+		 	}
+		 	if(key == 'volval'){
+		 		show[show.length - 1]['volume_value'] = e[key]
+		 	}
+		 	if(key == 'jiaoyi'){
+		 		show[show.length - 1]['volume'] = e[key]
+		 	}
+		 	if(key == 'att'){
+		 		show[show.length - 1]['attention'] = e[key]
+		 	}
+		 	if(key == 'com'){
+		 		show[show.length - 1]['commites'] = e[key]
+		 	}
+		 	if(key == 'gitscore'){
+		 		show[show.length - 1]['gitscore'] = e[key]
+		 	}
+		 	if(key == 'github'){
+		 		show[show.length - 1]['token'] = e[key].code
+		 	}
+		 }
+	})
+console.log(show)
+</script>
+</html>

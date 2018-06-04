@@ -1,0 +1,20 @@
+Render\CameraControl\LineIntersect [sx] [sy] [sz] [ex] [ey] [ez];
+
+作用：
+获取世界坐标系中的线段与场景相交且距离线段起点最近的交点
+
+参数：
+[sx] - double，线段起点X
+[sy] - double，线段起点Y
+[sz] - double，线段起点Z
+[ex] - double，线段终点X
+[ey] - double，线段终点Y
+[ez] - double，线段终点Z
+
+返回值：
+Log0 : [hit] [wx] [wy] [wz]
+[hit] = int，击中标志，若线段与场景有相交则为1，否则为0
+[wx] - double，交点在世界坐标系中的X坐标
+[wy] - double，交点在世界坐标系中的Y坐标
+[wz] - double，交点在世界坐标系中的Z坐标
+Log1~LogN : 被击中的面的可选信息
