@@ -9,42 +9,55 @@
 </body>
 <script>
 	function aa(){
-		var p = new Promise(function(resolve,reject){
+		return  new Promise(function(resolve,reject){
 			console.log(1111)
 			setTimeout(function(){
-				resolve(2222)
+				resolve()
 			},2000)
 		})
-		return p
 	}
 	function bb(){
-		var p = new Promise(function(resolve,reject){
+		return new Promise(function(resolve,reject){
 			console.log(3333)
 			setTimeout(function(){
-				resolve(4444)
+				resolve()
 			},2000)
 		})
-		return p
+		
 	}
 	function cc(){
-		var p = new Promise(function(resolve,reject){
+		
+		return  new Promise(function(resolve,reject){
 			console.log(5555)
 			setTimeout(function(){
-				resolve(6666)
+				resolve()
 			},2000)
 		})
-		return p
 	}
-	aa().then(function(data){
-		console.log(data)
+	aa().then(function(){
+		console.log(2222)
 		cc()
-		// return cc()
-	}).then(function(data){
-		console.log(data)
+	}).then(function(){
+		console.log(4444)
 		bb()
 		// return bb()
-	}).then(function(data){
-		console.log(data)
+	}).then(function(){
+		console.log(666)
 	})
+	// var p = new Promise(function(resolve,reject){
+	// 	setTimeout(()=>{
+	// 		console.log(111111)
+	// 		resolve('data1')
+	// 	},2000)
+		
+	// })
+
+	// p.then(function(data){
+	// 	setTimeout(()=>{
+	// 		console.log(data)
+	// 		return Promise.resolve()
+	// 	},2000)
+		
+	// })
 </script>
 </html>
