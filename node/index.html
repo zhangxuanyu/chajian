@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<style>
+		.bg{
+			width: 50px;
+			height: 50px;
+			background-image: url(bg1.jpg);
+			-webkit-background-size: cover;
+			background-size: cover;
+			transition: all 1s;
+		}
+		.bg:hover{
+			background-image: url(bg2.jpg);
+		}
+	</style>
+</head>
+<body>
+	<div class=".row">
+		<div class="col-lg-5 col-xs-8">1111111</div>
+		<div class="col-lg-7 col-xs-4">2222222222222</div>
+	</div>
+	<div id="data"></div>
+	<div id="date"></div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script>
+$.ajax({
+             type: "GET",
+             url: "http://127.0.0.1:8888/",
+             // header:'Access-Control-Allow-Origin:http://127.0.0.1:8888/',
+             data:'',
+             dataType: "json",
+             success: function(data){
+                         console.log(data)
+                         $('#data').html(data.date[3])
+                      }
+         });
+
+$.ajax({
+             type: "GET",
+             url: "http://127.0.0.1:8888/test",
+             // header:'Access-Control-Allow-Origin:http://127.0.0.1:8888/',
+             data:'',
+             dataType: "json",
+             success: function(data){
+                         console.log(data)
+                         $('#date').html(data.date.name)
+                      }
+         });
+// var aa = [{
+// 	id:1,
+// 	tool:{floow:[55,55,13,45],tie:[55,75,65,77]}
+// },{
+// 	id:12,
+// 	tool:{floow:[55,55,13,45],tie:[55,75,65,77]}
+// }]
+// console.log(aa)
+// for(let i=0;i<aa.length;i++){
+// 	if(aa[i].id==12){
+// 		console.log(aa[i].tool.floow)
+// 	}
+// }
+// console.log(hello.world())
+</script>
+</html>
