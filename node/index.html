@@ -26,6 +26,9 @@
 	</div>
 	<div id="data"></div>
 	<div id="date"></div>
+	<span>姓名：<input type="text" id="name"></span>
+	<span>年龄：<input type="num" id="age"></span>
+	<div id="submit">提交</div>
 </body>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 <script>
@@ -52,6 +55,41 @@ $.ajax({
                          $('#date').html(data.date.name)
                       }
          });
+
+$.ajax({
+             type: "GET",
+             url: "./input.json",
+             // header:'Access-Control-Allow-Origin:http://127.0.0.1:8888/',
+             data:'',
+             dataType: "json",
+             success: function(data){
+                         console.log(data)
+                         
+                      }
+         });
+
+$('#submit').on('click',()=>{
+	var nm = $('#name')[0].value
+	var ag = $('#age')[0].value
+	console.log(nm)
+	console.log(ag)
+	sub(nm,ag)
+
+})
+
+var sub=(aa,bb)=>{
+	$.ajax({
+             type: "POST",
+             url: "http://127.0.0.1:8888/post",
+             // header:'Access-Control-Allow-Origin:http://127.0.0.1:8888/',
+             data:{name:aa,age:bb},
+             dataType: "json",
+             success: function(data){
+                         console.log(data)
+                      }
+    });
+}
+
 // var aa = [{
 // 	id:1,
 // 	tool:{floow:[55,55,13,45],tie:[55,75,65,77]}
