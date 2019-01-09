@@ -59,6 +59,45 @@
 	// 	},2000)
 		
 	// })
+	
+//     total promise use ,if want to use chain.then we should return promise.resolve() ,for the return bb() and return cc()
+// 	function aa(){
+// 	 	return  new Promise(function(resolve,reject){
+// 	 		console.log(1111)
+// 	 		setTimeout(function(){
+// 	 			resolve()
+// 	 		},2000)
+// 	 	})
+// 	 }
+// 	 function bb(){
+// 	 	return new Promise(function(resolve,reject){
+// 	 		console.log(3333)
+// 	 		setTimeout(function(){
+// 	 			resolve()
+// 	 		},2000)
+// 	 	})
+		
+// 	 }
+// 	 function cc(){
+		
+// 	 	return  new Promise(function(resolve,reject){
+// 	 		console.log(5555)
+// 	 		setTimeout(function(){
+// 	 			resolve()
+// 			},2000)
+// 	 	})
+// 	 }
+// 	 aa().then(function(){
+// 	 	console.log(2222)
+// 	 	return cc()
+// 	 }).then(function(){
+// 	 	console.log(4444)
+// 	 	 return bb()
+// 	 }).then(function(){
+// 	 	console.log(666)
+// 	 })
+	
+	
 	// 异步和等待
 	function aa(){
 		return new Promise(function(resolve,reject){
